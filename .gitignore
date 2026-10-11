@@ -1,0 +1,16 @@
+﻿# Environment variables
+.env
+.env.*
+!.env.example
+
+# Temporary files
+tmp/
+
+# Frontend environment variables
+frontend-react-ts/.env
+frontend-react-ts/.env.*
+!frontend-react-ts/.env.example
+
+# Dependencies and build output
+node_modules/
+dist/

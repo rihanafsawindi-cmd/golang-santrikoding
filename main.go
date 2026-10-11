@@ -1,22 +1,22 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"santrikoding/backend-api/config"
+	"santrikoding/backend-api/database"
+	"santrikoding/backend-api/routes"
 )
 
 func main() {
-	//inisialiasai Gin
-	router := gin.Default()
 
-	//membuat route dengan method GET
-	router.GET("/", func(c *gin.Context) {
+	//load config .env
+	config.LoadEnv()
 
-		//return response JSON
-		c.JSON(200, gin.H{
-			"message": "Hello World!",
-		})
-	})
+	//inisialisasi database
+	database.InitDB()
 
-	//mulai server dengan port 3000
-	router.Run(":3000")
+	//setup router
+	r := routes.SetupRouter()
+
+	//mulai server
+	r.Run(":" + config.GetEnv("APP_PORT", "3000"))
 }
